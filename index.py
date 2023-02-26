@@ -5,7 +5,7 @@ from tabulate import tabulate
 
 
 # Define Streamlit app
-st.set_page_config(page_title='Python Programming Q&A', page_icon=':pencil2:')
+st.set_page_config(page_title='Python Programming Q&A with Moshiur', page_icon=':pencil2:')
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -28,7 +28,7 @@ client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_ID).sheet1
 
 # Define Streamlit app
-st.title('Python Programming Q&A')
+st.title('Python Programming Q&A with Moshiur')
 st.markdown('Use this form to submit your questions:')
 with st.form(key='question_form'):
     question = st.text_input(label='Questions')
