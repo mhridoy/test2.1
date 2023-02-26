@@ -14,7 +14,7 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-st.set_option('server.enableXsrfProtection', False)
+
 
 # Define Google Sheets credentials
 SCOPE = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
