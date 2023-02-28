@@ -6,6 +6,7 @@
 
 
 # Define Streamlit app
+st.set_page_config(page_title="FMC Teacher Attendance System", page_icon=":clipboard:")
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -93,7 +94,7 @@ client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_ID).sheet1
 
 # Define Streamlit app
-st.set_page_config(page_title="FMC Teacher Attendance System", page_icon=":clipboard:")
+
 st.title('Feni Model Teacher Attendance System')
 st.markdown('Please enter your information below:')
 
