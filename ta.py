@@ -97,7 +97,7 @@ sheet = client.open_by_key(SHEET_ID).sheet1
 # Define Streamlit app
 
 st.title('Feni Model Teacher Attendance System')
-st.markdown('Please enter your information below:')
+st.markdown('প্রিয় শিক্ষক, আপনার আজকের ক্লাসের তথ্য দিনঃ')
 
 # Get the list of teacher names from the Google Sheet
 teacher_names = sheet.col_values(1)[1:]
@@ -105,9 +105,9 @@ teacher_names = sheet.col_values(1)[1:]
 
 # Create a form to input teacher information
 with st.form(key='teacher_info_form'):
-    teacher_name = st.text_input(label='Name')
+    teacher_name = st.text_input(label='আপনার নাম লিখুনঃ ')
     today = datetime.now().strftime('%Y-%m-%d')
-    num_classes = st.number_input(label='Number of Classes Taught', min_value=0, value=0)
+    num_classes = st.number_input(label='আজকে আপনি কতটি  ক্লাস নিয়েছেন? ', min_value=0, value=0)
     submit_button = st.form_submit_button(label='Submit')
 
 
@@ -116,11 +116,12 @@ with st.form(key='teacher_info_form'):
 if submit_button:
     # Add the attendance record to the Google Sheet
     sheet.append_row([teacher_name, today, num_classes, '', '', ''])
-    st.success('Teacher information submitted!')
+    st.success('আপনার তথ্য সফলভাবে সাবমিট হয়েছে! অভিনদন!')
+    st.balloons()
 
 
 # Display the teacher information records in a table
-with st.expander('Teacher Attandance Records Approved or Declined by Admin'):
+with st.expander('আপনার ক্লাসের উপস্থিতি রিপোর্ট দেখুনঃ যা আমাদের এডমিন এপ্রুভ করেছেন কিনা তা দেখতে নিচের বাটনে ক্লিক করুনঃ'):
 
     #st.markdown('## Teacher Attandance Records')
     rows = sheet.get_all_values()
@@ -132,11 +133,11 @@ with st.expander('Teacher Attandance Records Approved or Declined by Admin'):
         st.write(tabulate(data, headers=header, tablefmt='pipe'))
 
 # Create a date range selector
-st.header('Generate montly report:')
+st.markdown('পুরো মাসজুড়ে আপনি কতটি ক্লাস নিয়েছে তা দেখতে নিচের তথ্যগুলো দিন:')
 with st.form(key='date_range_selector'):
     start_date = st.date_input('Start date')
     end_date = st.date_input('End date')
-    submit_button = st.form_submit_button(label='Select')
+    submit_button = st.form_submit_button(label='সাবমিট করুন')
 
 # Check if the form was submitted
 if submit_button:
@@ -155,11 +156,11 @@ if submit_button:
                     class_counts[teacher_name] = 1
 
     # Display the class counts in a table
-    st.markdown(f'## Classes Taught ({start_date} - {end_date})')
+    st.markdown(f'### সম্মানীতো শিক্ষকমন্ডলী সর্বমোট ক্লাস নিয়েছেনঃ  ({start_date} - {end_date}) তারিখের মধ্যে')
     if not class_counts:
         st.warning('No classes taught within the selected date range.')
     else:
         table_data = []
         for teacher_name, count in class_counts.items():
             table_data.append([teacher_name, count])
-        st.write(tabulate(table_data, headers=['Teacher Name', 'Number of Classes Taught'], tablefmt='pipe'))
+        st.write(tabulate(table_data, headers=['শিক্ষকের নাম', 'সর্বমোট ক্লাস নিয়েছেন'], tablefmt='pipe'))
