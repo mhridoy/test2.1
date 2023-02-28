@@ -6,14 +6,7 @@
 
 
 # Define Streamlit app
-st.set_page_config(page_title="FMC Teacher Attendance System", page_icon=":clipboard:")
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
+
 
 # # Define Google Sheets credentials
 # SCOPE = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
@@ -80,6 +73,14 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timedelta
 from tabulate import tabulate
 
+st.set_page_config(page_title="FMC Teacher Attendance System", page_icon=":clipboard:")
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 # Define Google Sheets credentials
 SCOPE = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 SERVICE_ACCOUNT_FILE = 'service_account_file02.json'
