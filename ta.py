@@ -96,7 +96,7 @@ sheet = client.open_by_key(SHEET_ID).sheet1
 
 # Define Streamlit app
 
-st.title('Feni Model Teacher Attendance System')
+st.title('Feni Model College Teacher Attendance System')
 st.markdown('প্রিয় শিক্ষক, আপনার আজকের ক্লাসের তথ্য দিনঃ')
 
 # Get the list of teacher names from the Google Sheet
