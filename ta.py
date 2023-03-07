@@ -96,7 +96,7 @@ sheet = client.open_by_key(SHEET_ID).sheet1
 
 # Define Streamlit app
 
-st.title('Feni Model College Teacher Attendance System')
+st.title('Feni Model Teacher Attendance System')
 st.markdown('প্রিয় শিক্ষক, আপনার আজকের ক্লাসের তথ্য দিনঃ')
 
 # Get the list of teacher names from the Google Sheet
@@ -149,11 +149,12 @@ if submit_button:
         row_date = datetime.strptime(row[1], '%Y-%m-%d')
         if row_date.date() >= start_date and row_date.date() <= end_date:
             approval = row[3]
+            num_class = int(row[2])
             if approval == 'Yes':
                 if teacher_name in class_counts:
-                    class_counts[teacher_name] += 1
+                    class_counts[teacher_name] += num_class
                 else:
-                    class_counts[teacher_name] = 1
+                    class_counts[teacher_name] = num_class
 
     # Display the class counts in a table
     st.markdown(f'### সম্মানীতো শিক্ষকমন্ডলী সর্বমোট ক্লাস নিয়েছেনঃ  ({start_date} - {end_date}) তারিখের মধ্যে')
