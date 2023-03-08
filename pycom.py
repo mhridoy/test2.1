@@ -52,7 +52,7 @@ if st.button('Submit your Assignment'):
     # Check if the IP address has already submitted an assignment
     st.write(ip_address)
     existing_data = sheet.get_all_records()
-    existing_ips = [row['IP Address'] for row in existing_data]
+    existing_ips = False
     if ip_address in existing_ips:
         st.error('You have already submitted an assignment.')
     else:
