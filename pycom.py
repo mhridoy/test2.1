@@ -53,7 +53,7 @@ if st.button('Submit your Assignment'):
     st.write(ip_address)
     existing_data = sheet.get_all_records()
     existing_ips = False
-    if ip_address in existing_ips:
+    if existing_ips:
         st.error('You have already submitted an assignment.')
     else:
         # Set up API credentials
