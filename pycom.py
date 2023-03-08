@@ -37,6 +37,7 @@ sheet = client.open_by_key(SHEET_ID).sheet1
 
 st.title('Assignment Submission |  Made With Love 💌 💌 🤟')
 
+st.warning('A student can submit the assignment only once')
 # Get student name and marks
 name = st.text_input('Enter your name:')
 code = st.text_area('Enter your code here:')
